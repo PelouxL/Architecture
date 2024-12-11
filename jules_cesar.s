@@ -5,30 +5,36 @@ diff:
 
 erreur:
 	.string "Il faut 2 arguments !!\n"
+
+saut_de_ligne:
+	.string "\n"
 	
         .text
 
-        .global _jules_cesar
+        .global _start
 
 
    
-_jules_cesar:
+_start:
         xor %rcx, %rcx          # on vide %rcx prendra le int
         xor %rbx, %rbx          # on vide %rbx prendra la chaine
         xor %rax, %rax          # on vide %rax prendra le resultat
         xor %r10, %r10          # incrementeur
 	xor %r11, %r11		# recup le nombre d'argument
+
+	mov saut_de_ligne, %r13 # on recup le caractere \n
 	
         xor %rdx, %rdx          # caracteres de l'increment
         
-        mov (%rsp), %r11        # on reucp argc
-        mov 16(%rsp), %rcx      # on recup argv[1]
+        pop %r11                # on reucp argc
+	pop %rcx		# on recup argv[0]
+        pop %rcx                # on recup argv[1]
         
         call atoi_PE            # on appel atoi qui met sa
                                 # valeur transformer dans %rax
         mov %rax, %rcx          # on recup la velur apres atoi
 
-        mov 24(%rsp), %rbx      # on recup argv[2] donc la chaine
+        pop %rbx                 # on recup argv[2] donc la chaine
 
 verif_arg:
 	cmp $3, %r11		# on verif qu'il y ai 2 argument
@@ -65,15 +71,17 @@ affichage_erreur:
 
 	
 affichage:
-	mov $1, %rax         	# num de syscall pour write
-        mov $1, %rdi         	# sortie voulu (stdout)
-        mov %rbx, %rsi       	# adresse de la chaine argv[2]
-        mov %r10, %rdx       	# taille en octet a afficher)
-        syscall              	# appel système pour écrire les données
+	mov %r13 , (%rbx, %r10, 1)	# on ajoute \n a la fin de la chaine
+	inc %r10			# incremente %r10
+	mov $1, %rax         		# num de syscall pour write
+        mov $1, %rdi         		# sortie voulu (stdout)
+        mov %rbx, %rsi       		# adresse de la chaine argv[2]
+        mov %r10, %rdx       		# taille en octet a afficher)
+        syscall              		# appel système pour écrire les données
 
   
 fin:			
-        mov %rbx, %rax		# on fait l'appel systeme du exit	
-        ret $0
-
-        
+	 mov $60, %rax	
+	 xor %rdi, %rdi
+	syscall
+	
