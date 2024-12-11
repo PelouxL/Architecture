@@ -8,11 +8,11 @@ erreur:
 	
         .text
 
-        .global _start
+        .global _jules_cesar
 
 
    
-_start:
+_jules_cesar:
         xor %rcx, %rcx          # on vide %rcx prendra le int
         xor %rbx, %rbx          # on vide %rbx prendra la chaine
         xor %rax, %rax          # on vide %rax prendra le resultat
@@ -21,15 +21,14 @@ _start:
 	
         xor %rdx, %rdx          # caracteres de l'increment
         
-        pop %r11                # on reucp argc
-        pop %rcx                # on recup argv[0]
-        pop %rcx                # on recup argv[1]
+        mov (%rsp), %r11        # on reucp argc
+        mov 16(%rsp), %rcx      # on recup argv[1]
         
         call atoi_PE            # on appel atoi qui met sa
                                 # valeur transformer dans %rax
         mov %rax, %rcx          # on recup la velur apres atoi
 
-        pop %rbx                # on recup argv[2] donc la chaine
+        mov 24(%rsp), %rbx      # on recup argv[2] donc la chaine
 
 verif_arg:
 	cmp $3, %r11		# on verif qu'il y ai 2 argument
@@ -66,8 +65,6 @@ affichage_erreur:
 
 	
 affichage:
-	movb $10, (%rbx, %r10, 1)
-	inc %r10
 	mov $1, %rax         	# num de syscall pour write
         mov $1, %rdi         	# sortie voulu (stdout)
         mov %rbx, %rsi       	# adresse de la chaine argv[2]
@@ -76,7 +73,7 @@ affichage:
 
   
 fin:			
-        mov $60, %rax		# on fait l'appel systeme du exit	
-        xor %rdi, %rdi
-        syscall
+        mov %rbx, %rax		# on fait l'appel systeme du exit	
+        ret $0
+
         
