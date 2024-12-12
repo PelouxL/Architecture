@@ -41,6 +41,7 @@ verif_arg:
 				# argv[0], argv[1], argv[2]
 	JGE boucle		# si on a au moins 2 argument jmp boucle
 	jmp affichage_erreur	# sinon on renvoie a la fin
+
 	
 boucle:
         mov (%rbx, %r10, 1), %dl          # %rbx[%r10] dans %dl
