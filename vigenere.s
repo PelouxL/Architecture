@@ -41,28 +41,47 @@ test_indice:
 	test %dl, %dl		# on verifie si != 0
 	jz fin_clef		
 
+verif_maj:
+        cmp $65, %rcx           # on regarde si %rcs >= code ascii 'A'
+        JL sous_programme       # si non alors n'est pas un caractere valide
+        cmp $90, %rcx           # on regarde si %rcs > code ascii 'A'
+        JG verif_min            # si oui on v verifier les minuscule
+        add $32, %rcx           # si non on soustrait la diff entre les
+        jmp asci_rdx            # minuscule et majuscule + les caacteres
+                                # entre eux
 
-asci_rbx:
-	sub $97, %rdx
-	add %rdx, %rcx
-	
+
+verif_min:
+        cmp $97, %rcx           # on verif si il est >= code ascii 'a'
+        JL sous_programme       # c'est un caraactere non valide
+        cmp $122, %rcx          # on verifie si le caracte !> a 'z'
+        JG sous_programme       # si c'est le cas caractere invalide
+        
+asci_rdx:
+	sub $97, %rdx           # on soustrait depuis la valeur 'a'
+	add %rdx, %rcx          # on ajoute notre valeurs a %rcx
+        jmp boucle
+
+sous_programme:
+        jmp erreur
+
+        
 boucle:
-	cmp $122, %rcx
-	JGE depassement
-	mov %cl, (%rax, %r8, 1)
-	inc %r8
-	inc %r9
-	jmp test_indice
+	cmp $122, %rcx                  # on verifie que %rcx !> 'z'
+	JGE depassement                 # si c'est le cas jmp depassement
+	mov %cl, (%rax, %r8, 1)         # on met la valeur correcte dans %rax
+	inc %r8                         # incremnte %r8
+	inc %r9                         # increment %r9
+	jmp test_indice                 # on retourne recup les indices
 
 depassement:	
-	sub $26, %rcx
-	jmp boucle
-	jmp asci_rbx
+	sub $26, %rcx                   # on enleve la diff 'a' et 'z' a %rcx
+	jmp boucle                      
 
 fin_clef:
 	mov $0 ,%r9		# on remet l'indice de RBX a 0
         mov (%rbx, %r9, 1), %dl # dx = RBX[R9]
-	jmp asci_rbx
+	jmp verif_maj
 
 erreur:
 	mov $1, %rax         		# num de syscall pour write
@@ -79,7 +98,7 @@ affichage:
 	mov $1, %rax         		# num de syscall pour write
         mov $1, %rdi         		# sortie voulu (stdout)
         mov %rbx, %rsi       		# adresse de la chaine argv[2]
-        mov %r8, %rdx       		# taille en octet a afficher)
+        mov %r8, %rbx       		# taille en octet a afficher)
         syscall              		# appel système pour écrire les données
 
 fin:
