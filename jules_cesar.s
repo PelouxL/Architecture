@@ -27,6 +27,13 @@ _start:
         xor %rdx, %rdx          # caracteres de l'increment
         
         pop %r11                # on reucp argc
+
+verif_arg:
+	cmp $3, %r11		# on verif qu'il y ai 2 argument
+	                        # argv[0], argv[1], argv[2]
+	JE pop
+	Jmp affichage_erreur	# sinon on renvoie a la fin
+pop:		
 	pop %rcx		# on recup argv[0]
         pop %rcx                # on recup argv[1]
         
@@ -36,11 +43,7 @@ _start:
 
         pop %rbx                 # on recup argv[2] donc la chaine
 
-verif_arg:
-	cmp $3, %r11		# on verif qu'il y ai 2 argument
-				# argv[0], argv[1], argv[2]
-	JGE boucle		# si on a au moins 2 argument jmp boucle
-	jmp affichage_erreur	# sinon on renvoie a la fin
+
 
 	
 boucle:

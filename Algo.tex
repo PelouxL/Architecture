@@ -1,0 +1,152 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+
+\pagestyle{headings}
+
+\title{ASSEMBLEUR : Projet}
+\author{DELAFORGE Jean, PELOUX Louis}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+
+
+
+\section{Programme Jules Cesar}
+
+\subsection{Pseudo-code}
+
+\begin{center}
+  \begin{tabular}{|l|}
+    \hline
+    \multicolumn{1}{|c|}{ Algorithme Jules Cesar 2} \\
+    \hline
+    Entrée : 2 arguments, le premier un entier et le second une chaine de caractere  \\
+    \hline
+    Sortie : Affichage de la chaine modifier \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|}
+    \hline
+    début : \\
+    \hspace{1em}$i \leftarrow 0$ ; \\
+    \hspace{1em}$clef \leftarrow depiler(P)$ ; \\
+    \hspace{1em}atoi($clef$); \\ 
+    \hspace{1em}$chaine \leftarrow depiler(P)$ ; \\
+    \hspace{1em}tant que $chaine$ n'est pas vide faire \\
+    \hspace{2em}$c \leftarrow chaine$[i]; \\
+    \hspace{2em}Tant que $c$ > 122  Alors \\
+    \hspace{3em}$c \leftarrow c$ - 26;\\
+    \hspace{2em}Fin tant que \\
+    \hspace{2em}$chaine[i] \leftarrow c + clef;$ \\
+    \hspace{2em}$i \leftarrow i + 1;$ \\
+    \hspace{1em}Fin tant que \\
+    \hspace{1em}On affiche la chaine modifier \\
+    fin \\
+    \hline
+  \end{tabularx}
+\end{center}
+
+
+\subsection{Fonctionnement du code}
+
+L'algorythme prend en parametre 2 arguments, le premier correspond a la clef, celle ci doit être passer en argument d'une fonction atoi pour pouvoir avoir la valeur en entier.
+Le second argument est une chaine de caracteres.
+\\
+\\
+Premièrement on verifie qu'il y est bien le bon nombre d'argument, c'est a dire 2 arguments. Si ce n'est pas le cas, on affiche le message d'erreur "Il faut 2 arguments !!" dans stdout et on finit le programme.
+\\
+On initialise un registre un 0 qui aura pour but d'être l'indice de la chaine de caracteres.
+\\
+\\
+Ensuite on recupere la chaine de caracteres contenue dans la pile et on le stocke dans un registre. On parcours le registre jusqu'a arriver au bout de la chaine. On reccupère le caracteres a l'indice, on lui ajoute a son code ascii la clef et on recrit la valeur dans la chaine.
+\\
+On recommence cette boucle tant que la chaîne argv2 soit vide.
+Enfin, on affiche la chaine de caracteres modifier.
+\\
+
+\newpage
+
+\section{Programme du Code de Vigenere}
+
+
+\subsection{Pseudo-code}
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|}
+    \hline
+    \multicolumn{1}{|c|}{ Algorithme de Vigenere } \\
+    \hline
+    Entrée : Une chaîne \textit{C} contenant une expression arithmétique postfixée  \\
+    \hline
+    Sortie : Retourne l'expression postfixée équivalente de \textit{C}  \\
+    \hline
+  \end{tabularx}
+\end{center}
+
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|}
+    \hline
+    début : \\
+    \hspace{1em}$x \leftarrow depiler(C)$ ;\\
+    \hspace{1em}$y \leftarrow 0$ ;\\
+    \hspace{1em}$P$ une pile ;\\
+    \hspace{1em}tant que x n'est pas nul alors\\
+    \hspace{2em}si Priorite(x) $= 0$ alors\\
+    \hspace{3em}afficher\textunderscore entier(x) ;\\
+    \hspace{2em}fin si\\
+    \hspace{2em}si $x = '('$ alors \\
+    \hspace{3em}empiler(P,x) ;\\
+    \hspace{2em}fin si\\
+    \hspace{2em}si $x = ')'$ alors\\
+    \hspace{3em}y = depiler(P) ;\\
+    \hspace{3em}tant que $y$ n'est pas nul alors\\
+    \hspace{4em}afficher\textunderscore entier(y);\\
+    \hspace{4em}y = depiler(P);\\
+    \hspace{3em}fin tant que\\
+    \hspace{2em}fin si\\
+    \hspace{2em}Si aucun des trois alors \\
+    \hspace{3em}y = depiler(P);\\
+    \hspace{3em}tant que $priorite(x) < priorite(y)$ et que y n'est pas nul alors\\
+    \hspace{4em}afficher\textunderscore entier(y) ;\\
+    \hspace{4em}y = depiler(P) ;\\
+    \hspace{3em}fin tant que\\
+    \hspace{3em}empiler(P,x) ;\\
+    \hspace{2em}fin si\\
+    \hspace{2em}x = depiler(C);\\
+    \hspace{1em}fin tant que\\
+
+    \hspace{1em}x = depiler(P); \\
+    \hspace{1em}tant que x n'est pas nul alors\\
+    \hspace{2em}afficher\textunderscore entier(x) ;\\
+    \hspace{2em}x = depiler(P) ;\\
+    \hspace{1em}fin tant que\\
+    
+    fin \\
+    \hline
+  \end{tabularx}
+\end{center}
+
+
+
+\end{document}
