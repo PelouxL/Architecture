@@ -16,4 +16,4 @@ jules_cesar.o: jules_cesar.s
 	$(AS) -o $@ $<
 
 clean:
-	rm -rf jules_cesar.o jules_cesar vigenere.o vigenere
+	rm -rf jules_cesar.o jules_cesar vigenere.o sous_vigenere.o vigenere 

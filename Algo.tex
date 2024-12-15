@@ -96,9 +96,9 @@ Enfin, on affiche la chaine de caracteres modifier.
     \hline
     \multicolumn{1}{|c|}{ Algorithme de Vigenere } \\
     \hline
-    Entrée : Une chaîne \textit{C} contenant une expression arithmétique postfixée  \\
+    Entrée : Deux chaines de caracteres, une qui fait office de clef, et l'autre a decoder  \\
     \hline
-    Sortie : Retourne l'expression postfixée équivalente de \textit{C}  \\
+    Sortie : Chaine de caracteres modifier  \\
     \hline
   \end{tabularx}
 \end{center}
@@ -108,40 +108,31 @@ Enfin, on affiche la chaine de caracteres modifier.
   \begin{tabularx}{\textwidth}{|X|}
     \hline
     début : \\
-    \hspace{1em}$x \leftarrow depiler(C)$ ;\\
-    \hspace{1em}$y \leftarrow 0$ ;\\
-    \hspace{1em}$P$ une pile ;\\
-    \hspace{1em}tant que x n'est pas nul alors\\
-    \hspace{2em}si Priorite(x) $= 0$ alors\\
-    \hspace{3em}afficher\textunderscore entier(x) ;\\
+    \hspace{1em}$chaine1 \leftarrow depiler(P)$ ;\\
+    \hspace{1em}$chaine2 \leftarrow depiler(P)$ ;\\
+    \hspace{1em}$chaine3 \leftarrow '\textbackslash 0' ;\\
+    \hspace{1em}$i \leftarrow 0$ \\
+    \hspace{1em}$j \leftarrow 0$ \\
+    \hspace{1em}$k \leftarrow 0$ \\ 
+    \hspace{1em}tant que chaine2 n'est pas vide alors\\
+    \hspace{2em}$c \leftarrow chaine2[i]$ \\
+    \hspace{2em}Si chaine1[j] vide alors\\
+    \hspace{3em}$ j \leftarrow 0$ \\
+    \hspace{2em}Fin si \\
+    \hspace{2em}$ h \leftarrow chaine1[j]$ \\
+    \hspace{2em}Si $c$ n'est ni une majuscule ou minuscule alors \\
+    \hspace{3em}appeler $sous\textunderscore vigenere;\\
     \hspace{2em}fin si\\
-    \hspace{2em}si $x = '('$ alors \\
-    \hspace{3em}empiler(P,x) ;\\
-    \hspace{2em}fin si\\
-    \hspace{2em}si $x = ')'$ alors\\
-    \hspace{3em}y = depiler(P) ;\\
-    \hspace{3em}tant que $y$ n'est pas nul alors\\
-    \hspace{4em}afficher\textunderscore entier(y);\\
-    \hspace{4em}y = depiler(P);\\
-    \hspace{3em}fin tant que\\
-    \hspace{2em}fin si\\
-    \hspace{2em}Si aucun des trois alors \\
-    \hspace{3em}y = depiler(P);\\
-    \hspace{3em}tant que $priorite(x) < priorite(y)$ et que y n'est pas nul alors\\
-    \hspace{4em}afficher\textunderscore entier(y) ;\\
-    \hspace{4em}y = depiler(P) ;\\
-    \hspace{3em}fin tant que\\
-    \hspace{3em}empiler(P,x) ;\\
-    \hspace{2em}fin si\\
-    \hspace{2em}x = depiler(C);\\
-    \hspace{1em}fin tant que\\
-
-    \hspace{1em}x = depiler(P); \\
-    \hspace{1em}tant que x n'est pas nul alors\\
-    \hspace{2em}afficher\textunderscore entier(x) ;\\
-    \hspace{2em}x = depiler(P) ;\\
-    \hspace{1em}fin tant que\\
-    
+    \hspace{2em}$h \leftarrow h - 97$;\\
+    \hspace{2em}$c \leftarrow c + h ;\\
+    \hspace{2em}Tant que c > 122 Alors \\
+    \hspace{3em}c \leftarrow c - 26$ \\
+    \hspace{2em}Fin Tant que\\
+    \hspace{2em}$chaine3[k] \leftarrow c$ ;\\
+    \hspace{2em}i \leftarrow i + 1;\\
+    \hspace{2em}j \leftarrow i + 1;\\
+    \hspace{2em}k \leftarrow i + 1;\\
+    \hspace{1em}Fin Tant que\\  
     fin \\
     \hline
   \end{tabularx}

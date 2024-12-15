@@ -5,12 +5,12 @@
         .global _sous_vige
 
 _sous_vige:
-        mov $1, %r15            # si r15 = 1 alors la chaine nest pas fini
+        movq $1, %r15            # si r15 = 1 alors la chaine nest pas fini
 
 boucle:
         inc %r8
-        mov ( %r14, %r8, 1) , %cl
-        test %cl, %cl
+        movb ( %r14, %r8, 1) , %cl	# cl = R14[R8]
+        test %cl, %cl			# si vide alors fin_tab
         jz fin_tab
 
 verif_maj:
@@ -28,7 +28,7 @@ verif_min:
         jmp fin
 
 fin_tab:
-        mov $0, %r15
+        movq $0, %r15		# permet de savoir si la chaine est fini
 
 fin:
         ret
