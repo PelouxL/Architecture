@@ -1,4 +1,5 @@
 \documentclass[a4paper, 12pt]{article}
+\usepackage{algorithm}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
@@ -7,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{tabularx}
 \usepackage{array}
+\usepackage{algpseudocode}
 
 \pagestyle{headings}
 
@@ -34,148 +36,166 @@
 \begin{center}
   \begin{tabular}{|l|}
     \hline
-    \multicolumn{1}{|c|}{ Algorithme Jules Cesar 2} \\
+    \multicolumn{1}{|c|}{ Algorithme Jules César 2} \\
     \hline
-    Entrée : 2 arguments, le premier un entier et le second une chaine de caractere  \\
+    Entrée : 2 arguments, le premier un entier et le second une chaîne de caractères  \\
     \hline
-    Sortie : Affichage de la chaine modifier \\
+    Sortie : Affichage de la chaîne modifiée \\
     \hline
   \end{tabular}
 \end{center}
 
-
-\begin{center}
-  \begin{tabularx}{\textwidth}{|X|}
-    \hline
-    début : \\
-    \hspace{1em}$i \leftarrow 0$ ; \\
-    \hspace{1em}$clef \leftarrow depiler(P)$ ; \\
-    \hspace{1em}atoi($clef$); \\ 
-    \hspace{1em}$chaine \leftarrow depiler(P)$ ; \\
-    \hspace{1em}tant que $chaine$ n'est pas vide faire \\
-    \hspace{2em}$c \leftarrow chaine$[i]; \\
-    \hspace{2em}Tant que $c$ > 122  Alors \\
-    \hspace{3em}$c \leftarrow c$ - 26;\\
-    \hspace{2em}Fin tant que \\
-    \hspace{2em}$chaine[i] \leftarrow c + clef;$ \\
-    \hspace{2em}$i \leftarrow i + 1;$ \\
-    \hspace{1em}Fin tant que \\
-    \hspace{1em}On affiche la chaine modifier \\
-    fin \\
-    \hline
-  \end{tabularx}
-\end{center}
+\begin{algorithm}
+\caption{Décalage des caractères d'une chaîne}
+\begin{algorithmic}[1]
+\State \textbf{début} :
+\State $i \leftarrow 0$
+\State $clé \leftarrow \text{depiler}(P)$
+\State $clé \leftarrow \text{atoi}(clé)$
+\State $chaîne \leftarrow \text{depiler}(P)$
+\While{$chaîne \neq$ vide}
+    \State $c \leftarrow \text{chaîne}[i]$
+    \While{$c > 122$}
+        \State $c \leftarrow c - 26$
+    \EndWhile
+    \State $\text{chaîne}[i] \leftarrow c + clé$
+    \State $i \leftarrow i + 1$
+\EndWhile
+\State Afficher la chaîne modifiée
+\State \textbf{fin}
+\end{algorithmic}
+\end{algorithm}
 
 
 \subsection{Fonctionnement du code}
 
-L'algorythme prend en parametre 2 arguments, le premier correspond a la clef, celle ci doit être passer en argument d'une fonction atoi pour pouvoir avoir la valeur en entier.
-Le second argument est une chaine de caracteres.
+L'algorithme prend en parametre 2 arguments, le premier correspond a la clé, celle-ci doit être passée en argument d'une fonction atoi pour pouvoir avoir sa valeur en entier.
+Le second argument est une chaîne de caractères.
 \\
 \\
-Premièrement on verifie qu'il y est bien le bon nombre d'argument, c'est a dire 2 arguments. Si ce n'est pas le cas, on affiche le message d'erreur "Il faut 2 arguments !!" dans stdout et on finit le programme.
+Premièrement, on verifie qu'il y est bien le bon nombre d'arguments, c'est-à-dire 2 arguments. Si ce n'est pas le cas, on affiche le message d'erreur "Il faut 2 arguments !!" dans stdout et on finit le programme.
 \\
-On initialise un registre un 0 qui aura pour but d'être l'indice de la chaine de caracteres.
+On initialise un registre un 0 qui aura pour but d'être l'indice de la chaîne de caractères.
 \\
 \\
-Ensuite on recupere la chaine de caracteres contenue dans la pile et on le stocke dans un registre. On parcours le registre jusqu'a arriver au bout de la chaine. On reccupère le caracteres a l'indice, on lui ajoute a son code ascii la clef et on recrit la valeur dans la chaine.
+Ensuite, on recupère la chaîne de caractères contenue dans la pile et on la stocke dans un registre. On parcours le registre jusqu'à arriver au bout de la chaîne. On recupère le caractère à l'indice, on lui ajoute a son code ascii la clé et on réécrit la valeur dans la chaîne.
 \\
 On recommence cette boucle tant que la chaîne argv2 soit vide.
-Enfin, on affiche la chaine de caracteres modifier.
+Enfin, on affiche la chaîne de caractères modifiée.
 \\
 
 \newpage
 
-\section{Programme du Code de Vigenere}
-
+\section{Programme Vigenère}
 
 \subsection{Pseudo-code}
 
 \begin{center}
-  \begin{tabularx}{\textwidth}{|X|}
+  \begin{tabular}{|l|}
     \hline
-    \multicolumn{1}{|c|}{ Algorithme de Vigenere } \\
+    \multicolumn{1}{|c|}{ Algorithme Vigenere 2} \\
     \hline
-    Entrée : Deux chaines de caracteres, une qui fait office de clef, et l'autre a decoder  \\
+    Entrée : Deux chaînes de caractères, une qui fait office de clé, et l'autre à décoder  \\
     \hline
-    Sortie : Chaine de caracteres modifier  \\
+    Sortie : Chaîne de caractères modifiée \\
     \hline
-  \end{tabularx}
+  \end{tabular}
 \end{center}
 
+\begin{algorithm}
+\caption{Algorithme Vigenère}
+\begin{algorithmic}[1]
+\State \textbf{début :}
+\State $i \gets 0$
+\State $j \gets 0$
+\State $k \gets 0$
+\State $clé \gets \text{depiler}(P)$
+\State $chaîne \gets \text{depiler}(P)$
+\State $chaîne3 \gets '\backslash 0'$ \Comment{Initialisation de la chaîne codée}
+\While{$chaîne$ n'est pas vide}
+    \State $c \gets \text{chaîne}[i]$
+    \If{$clef[j]$ est vide}
+        \State $j \gets 0$ \Comment{Boucle sur la clé}
+    \EndIf
+    \If{$A \leq c \leq Z$}
+        \State $c \gets c + 32$ \Comment{Convertir en minuscule}
+    \EndIf
+    \If{$a \leq c \leq z$}
+        \State $h \gets clé[j]$
+        \State $h \gets h - 97$ \Comment{Décalage selon la clé}
+        \State $c \gets c + h$
+        \While{$c > 122$}
+            \State $c \gets c - 26$ \Comment{Reste dans la plage des minuscules}
+        \EndWhile
+        \State $chaîne3[k] \gets c$
+        \State $j \gets j + 1$
+    \Else
+        \State Appeler \texttt{sous\_vigenere}
+        \State $chaîne3[i] \gets '.'$
+    \EndIf
+    \State $i \gets i + 1$
+    \State $k \gets k + 1$
+\EndWhile
+\State Afficher $chaîne3$
+\State \textbf{fin}
+\end{algorithmic}
+\end{algorithm}
 
-\begin{center}
-  \begin{tabularx}{\textwidth}{|X|}
-    \hline
-    début : \\
-    \hspace{1em}$chaine1 \leftarrow depiler(P)$ ;\\
-    \hspace{1em}$chaine2 \leftarrow depiler(P)$ ;\\
-    \hspace{1em}$chaine3 \leftarrow '\textbackslash 0' ;\\
-    \hspace{1em}$i \leftarrow 0$ \\
-    \hspace{1em}$j \leftarrow 0$ \\
-    \hspace{1em}$k \leftarrow 0$ \\ 
-    \hspace{1em}tant que chaine2 n'est pas vide alors\\
-    \hspace{2em}$c \leftarrow chaine2[i]$ \\
-    \hspace{2em}Si chaine1[j] vide alors\\
-    \hspace{3em}$ j \leftarrow 0$ \\
-    \hspace{2em}Fin si \\
-    \hspace{2em}$ h \leftarrow chaine1[j]$ \\
-    \hspace{2em}Si $c$ n'est ni une majuscule ou minuscule alors \\
-    \hspace{3em}appeler $sous\textunderscore vigenere;\\
-    \hspace{2em}fin si\\
-    \hspace{2em}$h \leftarrow h - 97$;\\
-    \hspace{2em}$c \leftarrow c + h ;\\
-    \hspace{2em}Tant que c > 122 Alors \\
-    \hspace{3em}c \leftarrow c - 26$ \\
-    \hspace{2em}Fin Tant que\\
-    \hspace{2em}$chaine3[k] \leftarrow c$ ;\\
-    \hspace{2em}i \leftarrow i + 1;\\
-    \hspace{2em}j \leftarrow i + 1;\\
-    \hspace{2em}k \leftarrow i + 1;\\
-    \hspace{1em}Fin Tant que\\  
-    fin \\
-    \hline
-  \end{tabularx}
-\end{center}
 
-\subsection{Pseudo-code Sous Vigenere}
+\newpage
 
-\begin{center}
-  \begin{tabularx}{\textwidth}{|X|}
-    \hline
-    \multicolumn{1}{|c|}{ Algorithme de Sous Vigenere } \\
-    \hline
-    Entrée : Une chaine de caractères et un index pour avancer dans la chaine \\
-    \hline
-    Sortie : Indication si la chaine est terminée ou avancée jusqu'au prochain caractère valide \\
-    \hline
-  \end{tabularx}
-\end{center}
 
-\begin{center}
-  \begin{tabularx}{\textwidth}{|X|}
-    \hline
-    début : \\
-    \hspace{1em}$fin\_chaine \leftarrow 1$ ;\\
-    \hspace{1em}Tant que la chaîne n'est pas terminée alors \\
-    \hspace{2em}$i \leftarrow i + 1$ ; (i = indice chaîne)\\
-    \hspace{2em}$c \leftarrow \text{chaine2}[i]$ ; \\
-    \hspace{2em}Si $c = 0$ alors \\
-    \hspace{3em}$fin\_chaine \leftarrow 0$ ; \\
-    \hspace{2em}Fin si \\
-    \hspace{2em}Si $c \geq A$ et $c \leq Z$ alors \\
-    \hspace{3em}Retourner oui ; \\
-    \hspace{2em}Sinon \\
-    \hspace{3em}Si $c \geq a$ et $c \leq z$ alors \\
-    \hspace{4em}Retourner oui ; \\
-    \hspace{3em}Sinon : \\
-    \hspace{4em}Revenir au début de la boucle \\
-    \hspace{3em}Fin si\\
-    \hspace{2em}Fin si\\
-    \hspace{1em}Fin tant que \\
+\subsection{Fonctionnement du code}
 
-    \hline
-  \end{tabularx}
-\end{center}
+L'algorithme de Vigenère commence par dépiler la clé et le message à chiffrer. Il initialise trois registres : i, j, et k, qui seront utilisés pour parcourir respectivement le message, la clé, et la chaîne codée.
+\\
+\\
+À chaque itération, l'algorithme récupère un caractère du message (chaine[i]) et, si le caractère est valide (lettre de l'alphabet), le décalage est effectué en fonction de la clé. Si le caractère est une lettre majuscule, il est d'abord converti en minuscule.
+\\
+\\
+Le décalage est effectué en ajoutant la valeur de la clé à la valeur ASCII du caractère, et si cette somme dépasse la lettre 'z', une boucle permet de revenir dans la plage des lettres minuscules.
+\\
+\\
+Si un caractère n'est pas valide (pas une lettre), l'algorithme passe à la fonction \texttt{sous\_vigenere} pour vérifier et passer au caractère suivant. Enfin, la chaîne codée est affichée à la fin du processus.
+
+\newpage
+
+\subsection{Pseudo-code Sous Vigenère}
+\begin{algorithm}
+\caption{Vérification de la validité du caractère}
+\begin{algorithmic}[1]
+\State \textbf{début :}
+\State $fin\_chaine \gets 1$
+\While{la chaîne n'est pas terminée}
+    \State $i \gets i + 1$ \Comment{(i = indice chaîne)}
+    \State $c \gets \text{chaine}[i]$
+    \If{$c = 0$}
+        \State $fin\_chaine \gets 0$
+    \EndIf
+    \If{$A \leq c \leq Z$}
+        \State \textbf{return}
+    \ElsIf{$a \leq c \leq z$}
+        \State \textbf{return}
+    \EndIf
+\EndWhile
+\State \textbf{fin}
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Fonctionnement du code sous\_vigenere}
+
+La fonction sous\_vigenere est utilisée pour vérifier si un caractère dans la chaîne à chiffrer (chaîne) est une lettre valide (majuscule ou minuscule).
+\\
+\\
+Elle commence par initialiser une variable $fin\_chaine$ à 1, ce qui indique que la chaîne est valide au début. Ensuite, elle boucle sur chaque caractère de la chaîne à partir de l'indice i.
+\\
+\begin{itemize}
+    \item Si le caractère est nul (fin de chaîne), la fonction définit fin\_chaine à 0 et termine la vérification.
+    \item Si le caractère est une lettre majuscule (de A à Z), la fonction return pour indiquer qu'il s'agit d'un caractère valide.
+    \item Si le caractère est une lettre minuscule (de a à z), la fonction return.
+    \item Si le caractère n'est ni une lettre majuscule ni une lettre minuscule, la fonction revient au début de la boucle pour vérifier le prochain caractère.
+\end{itemize}
+\\
+Si la boucle se termine sans trouver de caractère valide, la fonction quitte sans retourner de résultat explicite, mais sa logique sert à gérer la progression à travers les caractères de la chaîne jusqu'à ce qu'un caractère valide soit trouvé.
 
 \end{document}
