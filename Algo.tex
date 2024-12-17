@@ -138,6 +138,44 @@ Enfin, on affiche la chaine de caracteres modifier.
   \end{tabularx}
 \end{center}
 
+\subsection{Pseudo-code Sous Vigenere}
 
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|}
+    \hline
+    \multicolumn{1}{|c|}{ Algorithme de Sous Vigenere } \\
+    \hline
+    Entrée : Une chaine de caractères et un index pour avancer dans la chaine \\
+    \hline
+    Sortie : Indication si la chaine est terminée ou avancée jusqu'au prochain caractère valide \\
+    \hline
+  \end{tabularx}
+\end{center}
+
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|}
+    \hline
+    début : \\
+    \hspace{1em}$fin\_chaine \leftarrow 1$ ;\\
+    \hspace{1em}Tant que la chaîne n'est pas terminée alors \\
+    \hspace{2em}$i \leftarrow i + 1$ ; (i = indice chaîne)\\
+    \hspace{2em}$c \leftarrow \text{chaine2}[i]$ ; \\
+    \hspace{2em}Si $c = 0$ alors \\
+    \hspace{3em}$fin\_chaine \leftarrow 0$ ; \\
+    \hspace{2em}Fin si \\
+    \hspace{2em}Si $c \geq A$ et $c \leq Z$ alors \\
+    \hspace{3em}Retourner oui ; \\
+    \hspace{2em}Sinon \\
+    \hspace{3em}Si $c \geq a$ et $c \leq z$ alors \\
+    \hspace{4em}Retourner oui ; \\
+    \hspace{3em}Sinon : \\
+    \hspace{4em}Revenir au début de la boucle \\
+    \hspace{3em}Fin si\\
+    \hspace{2em}Fin si\\
+    \hspace{1em}Fin tant que \\
+
+    \hline
+  \end{tabularx}
+\end{center}
 
 \end{document}
